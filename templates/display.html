@@ -1,9 +1,11 @@
- <!-- This Source Code Form is subject to the terms of the Mozilla Public
+ <!-- This Source Code Form is subject to the terms of the Mozilla Public 
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+   
+    <!-- Anpassungen in Second Display (Layout,Logo, Infotext unter der Warteschlange)  -->
+   
 {% extends "base_s.html" %}
 {% block title %} FQM - {{ page_title }} {% endblock %}
-
 
 {% block page_content %}
 <script type="text/javascript" src="{{ url_for('static', filename='jsonstream.min.js') }}"></script>
@@ -276,34 +278,42 @@
 
 
 {% elif tv == 1 %}
-<div class="row">
-    <div class="col-xs-12 text-center">
-		<h1 class='title mt-1 mb-1'> {{ ts.title }} </h1>
-    </div>
-</div>
+
+
+<table align="center" border="0" line-height="0px" class="title mt-1 mb-1" style="font-family: auto;"> 
+	<tr>
+    <td>
+	<img src="https://www.sbz-fideliopark.de/wp-content/uploads/2016/02/cropped-logo_Tor.jpg" width="100" height="100" />
+	</td>
+	<td>&nbsp; &nbsp; </td>
+    <td><center style="line-height: 0.9;"> Impfaktion 5.2.2022 </center></td>
+  </tr>
+</table>
+
 <div class="row text-center mt-1">
 	{% if not settings.single_row %}
     <div class="col-xs-4">
 	    <h1 class='offices'>
-				{% if alias.office != 'Office' %}{{ alias.office }}{% else %}{{ translate('Office', 'en', [defLang]) }}{% endif %} : 
+				{% if alias.office != 'Office' %}{{ alias.office }}{% else %}{{ translate('Office', 'en', [defLang]) }}{% endif %}  
 				<p stream='con' class='effectit ensureit inline'>{{ translate('Empty', 'en', [defLang]) }}</p>
 		</h1>
 	</div>
     <div class="col-xs-4">
       	<h1 class='tasks'>
-					{% if alias.task != 'Task' %}{{ alias.task }}{% else %}{{ translate('Task', 'en', [defLang]) }}{% endif %} : 
-			<p class='effectit ensureit inline' stream='cott'>{{ translate('Empty', 'en', [defLang]) }}</p>
-	  	</h1>
+			<b>{% if alias.ticket != 'Ticket' %}{{ alias.ticket }}{% else %}{{ translate('Ticket', 'en', [defLang]) }}{% endif %}  &nbsp;
+			<p class='effectdoit ensureit inline' stream='cot'>{{ translate('Empty', 'en', [defLang]) }}</p></b>
+					</h1>
 	</div>
 	{% endif %}
     <div class="col-xs-4">
 	    <h1 class='tasks'>
-			{% if alias.ticket != 'Ticket' %}{{ alias.ticket }}{% else %}{{ translate('Ticket', 'en', [defLang]) }}{% endif %} : 
-			<p class='effectdoit ensureit inline' stream='cot'>{{ translate('Empty', 'en', [defLang]) }}</p>
-		</h1>
+			{% if alias.task != 'Task' %}{{ alias.task }}{% else %}{{ translate('Task', 'en', [defLang]) }}{% endif %} 
+			<p class='effectit ensureit inline' stream='cott'>{{ translate('Empty', 'en', [defLang]) }}</p>
+			</h1>
     </div>
 </div>
-<div class="row text-center mt-3">
+<div class="tickets" style="margin-top: 25"><center>Bitte bereithalten:</center></div>
+<div class="row text-center mt-3" style="margin-top: -10">
     <div class="col-xs-3">
 		<h1 class='tickets'>
 			<p class='watchit inline' stream='w1'>{{ translate('Empty', 'en', [defLang]) }}</p>
@@ -325,7 +335,7 @@
 		</h1>
     </div>
 </div>
-<div class="row text-center mt-1">
+<div class="row text-center mt-1"  style="margin-top: -20">
     <br>
     <div class="col-xs-3">
 		<h1 class='tickets'>
@@ -348,6 +358,13 @@
 		</h1>
     </div>
 </div>
+<br>
+<br>
+<div class="row text-center mt-1"  style="margin-top: -10"><div class='tickets'  style="color: white">
+    			Bitte vor dem Aufruf alle notwendigen Unterlagen vollständig ausfüllen!  
+
+
+	</div></div>
 
 
 {% elif tv == 2 %}
