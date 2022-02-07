@@ -35,7 +35,14 @@ $(document).ready(function () {
 {%- from "_helpers.html" import render_field with context %}
 {%- from "_footers.html" import panel_footer, spacer with context %}
 {%- from "_tickets.html" import ticket_color, ticket_actions, processed_ticket_modal, ticket_orders with context %}
-<div class="col-md-12">
+				{{ panel_footer([
+				[it(['Tickets total', serial.count()]), it(['Waiting', serial.waiting.count(), 'danger'])],
+			])}}
+			{{serial.count()}}
+			<div class="row text-center">
+		    	
+	    </div>
+		<div class="col-md-12">
     <div class="panel panel-primary">
         <div class="panel-heading">
 	    	<div class="row">
@@ -150,6 +157,14 @@ $(document).ready(function () {
 					{{ macros.pagination_widget(pagination, '.offices', o_id=o_id, order_by=order_by) }}
 		    	</div>
 			</div>
+	    </div>
+		<div class="panel-footer text-center">
+			{{ panel_footer([
+				[it(['Tickets total', serial.count()]), it(['Waiting', serial.waiting.count(), 'danger'])],
+				[it(['Processed', serial.processed.count()]), it(['Unattended', serial.unattended.count(), 'warning'])],
+			])}}
+			<div class="row text-center">
+		    	
 	    </div>
 	</div>
 </div>

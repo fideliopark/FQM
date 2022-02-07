@@ -1,0 +1,6 @@
+	- Datenbankabfrage für Warteschlangenlänge direkt in Display-Template integrieren->Änderungen in Core.py reviedieren.
+	- Abfrage von capacity auf Datei im Stammverzeichnis legen
+	- Berechnung der verfügbaren Tickets Serverseitig ausführen
+	- capacity in Backend und Datenbank integieren
+	- Separate Views (Display) für Infoscreen und Handy erstellen
+	- Anpassungs-Variablen für zusätzlichen View ins Backend/Datenbank integieren

@@ -2,14 +2,18 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/.  -->
    
-    <!-- Anpassungen in Second Display (Layout,Logo, Infotext unter der Warteschlange)  -->
-   
+    <!-- ToDo:
+	- Datenbankabfrage für Warteschlangenlänge direkt integrieren->Änderungen in Core.py reviedieren.
+	-->
 {% extends "base_s.html" %}
 {% block title %} FQM - {{ page_title }} {% endblock %}
 
 {% block page_content %}
 <script type="text/javascript" src="{{ url_for('static', filename='jsonstream.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='audiosequence.min.js') }}"></script>
+
+<script type="text/javascript" src="{{ url_for('static', filename='capacity.js') }}"></script>
+
 <script src="{{ url_for('static', filename='extFunctions.js') }}" type='text/javascript'></script>
 <script type='text/javascript'>
 	var announcement_texts = undefined
@@ -361,8 +365,15 @@
 <br>
 <br>
 <div class="row text-center mt-1"  style="margin-top: -10"><div class='tickets'  style="color: white">
-    			Bitte vor dem Aufruf alle notwendigen Unterlagen vollständig ausfüllen!  
+    			Bitte vor dem Aufruf alle notwendigen Unterlagen vollständig ausfüllen! 
+<!--<br>			Ticket Ausgegeben:	{{ serial.count()}} -->
+<br>			Wartend:	{{ serial.waiting.count()}} 
+<br>			Verfügbare Tickets :	
 
+<script type='text/javascript'>
+let verfuegbar = capacity - {{ serial.count()}};
+ document.write(verfuegbar)
+</script>
 
 	</div></div>
 

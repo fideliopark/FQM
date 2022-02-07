@@ -336,14 +336,19 @@ def repeat_announcement():
 
 @core.route('/display', defaults={'office_id': None})
 @core.route('/display/<int:office_id>')
+
 def display(office_id=None):
     ''' display screen view. '''
+    
+
     display_settings = data.Display_store.query.first()
     slideshow_settings = data.Slides_c.query.first()
     slides = data.Slides.query.order_by(data.Slides.id.desc()).all() or None
     aliases_settings = data.Aliases.query.first()
     video_settings = data.Vid.query.first()
+    tickets = data.Serial.all_office_tickets(1, order=False)
     feed_url = url_for('core.feed', office_id=office_id)
+
 
     return render_template('display.html',
                            audio=1 if display_settings.audio == 'true' else 0,
@@ -352,7 +357,7 @@ def display(office_id=None):
                            slides=data.Slides.query, tv=display_settings.tmp,
                            page_title='Display Screen', anr=display_settings.anr,
                            alias=aliases_settings, vid=video_settings,
-                           feed_url=feed_url)
+                           feed_url=feed_url, serial=tickets)
 
 
 @core.route('/touch/<int:a>', defaults={'office_id': None})
